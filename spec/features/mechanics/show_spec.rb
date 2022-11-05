@@ -35,7 +35,7 @@ RSpec.describe 'Mechanics Show Page', type: :feature do
       MechanicRide.create!(mechanic: naomi, ride: bowser)
 
       visit mechanic_path(naomi)
-      save_and_open_page
+      
       expect(page).to_not have_content("Working On: #{koopa.name}")
 
       within("#add-ride") do

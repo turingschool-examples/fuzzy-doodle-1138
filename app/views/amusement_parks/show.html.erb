@@ -1,0 +1,11 @@
+<h2><%= @park.name %></h2><br>
+
+<div id="info">
+  <p>Price of Admission: $<%= @park.admission_cost %></p><br><br>
+  <h4>Working Mechanics</h4>
+  <ul>
+    <% @park.mechanics.distinct.each do |mechanic| %>
+    <li><%= mechanic.name %></li>
+    <% end %>
+  </ul>
+</div>
