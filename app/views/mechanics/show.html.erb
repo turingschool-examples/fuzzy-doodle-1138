@@ -4,8 +4,15 @@
 <p>Years Experience: <%= @mechanic.years_experience %></p>
 
 <div id="rides">
-  <h3>Rides:</h3>
+  <h3>Current rides they're working on:</h3>
   <% @mechanic.rides.each do |ride| %>
       <p><%= ride.name %></p>
   <% end %>
 </div>
+
+<h3>Add a ride to workload:</h3>
+<%= form_with url: "/mechanics/#{@mechanic.id}/rides", method: :post, local: true do |f| %>
+    <%= f.label :ride_id, "Ride ID:" %>
+    <%= f.text_field :ride_id %>
+    <%= f.submit "Submit" %>
+<% end %>
