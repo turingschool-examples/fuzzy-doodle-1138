@@ -34,7 +34,7 @@ RSpec.describe "the Amusement Park Show page" do
 
       expect(page).to have_content("Park Name: Six Flags")
       expect(page).to have_content("Admissions Cost: $25")
-      expect(page).to have content("Mechanics: Haku Dog, Mako Cat, Kiko Dog")
+      expect(page).to have_content("Mechanics: Haku Dog, Kiko Dog, and Mako Cat")
     end
   end
 end
