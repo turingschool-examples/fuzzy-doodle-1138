@@ -13,6 +13,11 @@ RSpec.describe 'Amusement Park Show Page', type: :feature do
 
   describe 'amusement_park#show' do
     it 'shows the name and price of admission for the amusement park' do
+      MechanicRide.create!(mechanic: naomi, ride: yoshi)
+      MechanicRide.create!(mechanic: naomi, ride: bowser)
+      MechanicRide.create!(mechanic: khaela, ride: koopa)
+      MechanicRide.create!(mechanic: khaela, ride: yoshi)
+      
       visit amusement_park_path(nintendo)
 
       expect(page).to have_content(nintendo.name)
@@ -35,6 +40,24 @@ RSpec.describe 'Amusement Park Show Page', type: :feature do
         expect(page).to have_content(naomi.name, count: 1)
         expect(page).to have_content(khaela.name, count: 1)
         expect(page).to_not have_content(tyler.name)
+      end
+    end
+
+    it 'shows a list of all the parks rides ordered by average experience of mechanics working on the ride' do
+      MechanicRide.create!(mechanic: naomi, ride: yoshi)
+      MechanicRide.create!(mechanic: khaela, ride: yoshi)
+      MechanicRide.create!(mechanic: tyler, ride: yoshi)
+      MechanicRide.create!(mechanic: naomi, ride: bowser)
+      MechanicRide.create!(mechanic: tyler, ride: bowser)
+      MechanicRide.create!(mechanic: khaela, ride: koopa)
+      
+
+      visit amusement_park_path(nintendo)
+
+      within("#my-rides") do
+        expect(page).to have_content("#{yoshi.name} - Average Mechanic Experience: #{yoshi.mechanics.average_experience}")
+        expect(page).to have_content("#{bowser.name} - Average Mechanic Experience: #{bowser.mechanics.average_experience}")
+        expect(page).to have_content("#{koopa.name} - Average Mechanic Experience: #{koopa.mechanics.average_experience}")
       end
     end
   end

@@ -9,3 +9,9 @@
     <% end %>
   </ul>
 </div>
+
+<div id="my-rides">
+  <% @park.rides.each do |ride| %>
+    <p><%= ride.name %> - Average Mechanic Experience: <%= ride.mechanics.average_experience %></p>
+  <% end %>
+</div>
