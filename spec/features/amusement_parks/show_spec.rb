@@ -36,5 +36,15 @@ RSpec.describe "the Amusement Park Show page" do
       expect(page).to have_content("Admissions Cost: $25")
       expect(page).to have_content("Mechanics: Haku Dog, Kiko Dog, and Mako Cat")
     end
+
+    it "displays a list of all the parks rides, ordered by the avg experience of the mechanics working on the ride" do 
+      visit amusement_park_path(@park)
+
+      expect(page).to have_content("Rides:")
+      within "#rides" do 
+        expect("Pharoahs Boat - Avg. Experience: 10.0").to appear_before("Swings - Avg. Experience: 6.5", only_text: true)
+        expect("Swings - Avg. Experience: 6.5").to appear_before("Sizzler - Avg. Experience: 5.7", only_text: true)
+      end
+    end
   end
 end
