@@ -17,7 +17,7 @@ RSpec.describe 'Amusement Park Show Page', type: :feature do
       MechanicRide.create!(mechanic: naomi, ride: bowser)
       MechanicRide.create!(mechanic: khaela, ride: koopa)
       MechanicRide.create!(mechanic: khaela, ride: yoshi)
-      
+
       visit amusement_park_path(nintendo)
 
       expect(page).to have_content(nintendo.name)
@@ -53,11 +53,14 @@ RSpec.describe 'Amusement Park Show Page', type: :feature do
       
 
       visit amusement_park_path(nintendo)
-
+    
       within("#my-rides") do
-        expect(page).to have_content("#{yoshi.name} - Average Mechanic Experience: #{yoshi.mechanics.average_experience}")
-        expect(page).to have_content("#{bowser.name} - Average Mechanic Experience: #{bowser.mechanics.average_experience}")
-        expect(page).to have_content("#{koopa.name} - Average Mechanic Experience: #{koopa.mechanics.average_experience}")
+        expect(page).to have_content("#{yoshi.name} - Average Mechanic Experience: 6")
+        expect(page).to have_content("#{bowser.name} - Average Mechanic Experience: 4")
+        expect(page).to have_content("#{koopa.name} - Average Mechanic Experience: 11")
+      
+        expect(koopa.name).to appear_before(yoshi.name)
+        expect(yoshi.name).to appear_before(bowser.name)
       end
     end
   end

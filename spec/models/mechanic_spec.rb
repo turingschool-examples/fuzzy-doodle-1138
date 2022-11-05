@@ -9,12 +9,4 @@ RSpec.describe Mechanic, type: :model do
     it { should have_many(:mechanic_rides) }
     it { should have_many(:rides).through(:mechanic_rides) }
   end
-
-  describe 'class methods' do
-    describe '#average_experience' do
-      it 'returns the average years of experience for all mechanics' do
-        expect(Mechanic.average_experience).to eq(6)
-      end
-    end
-  end
 end
