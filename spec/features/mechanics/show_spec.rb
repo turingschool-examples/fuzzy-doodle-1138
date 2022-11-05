@@ -29,5 +29,25 @@ RSpec.describe 'Mechanics Show Page', type: :feature do
         expect(page).to_not have_content("Working On: #{koopa.name}")
       end
     end
+
+    it 'allows user to fill in a ride ID and submit to add to the mechanic' do
+      MechanicRide.create!(mechanic: naomi, ride: yoshi)
+      MechanicRide.create!(mechanic: naomi, ride: bowser)
+
+      visit mechanic_path(naomi)
+      save_and_open_page
+      expect(page).to_not have_content("Working On: #{koopa.name}")
+
+      within("#add-ride") do
+        fill_in :ride_id, with: koopa.id
+        click_button 'Submit'
+      end
+
+      expect(current_path).to eq(mechanic_path(naomi))
+      
+      within("#my-rides") do
+        expect(page).to have_content("Working On: #{koopa.name}")
+      end
+    end
   end
 end

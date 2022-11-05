@@ -1,12 +1,21 @@
 <div id="info">
-  <h3>My Information</h3>
+  <h3>Mechanic Information</h3>
   <p>Name: <%= @mechanic.name %></p>
   <p>Years of Experience: <%= @mechanic.years_experience %></p>
-</div><br><br>
+</div><br>
 
 <div id="my-rides">
   <h4>My Rides</h4>
-  <%= @mechanic.rides.each do |ride| %>
+  <% @mechanic.rides.each do |ride| %>
     <p>Working On: <%= ride.name %></p>
+  <% end %>
+</div>
+
+<div id="add-ride">
+  <%= form_with url: mechanic_rides_path(@mechanic), method: :post, local: true do |f| %>
+    <%= f.label :ride_id %>
+    <%= f.text_field :ride_id %>
+
+    <%= f.submit 'Submit' %>
   <% end %>
 </div>
