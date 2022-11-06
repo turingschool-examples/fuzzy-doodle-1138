@@ -1,0 +1,20 @@
+<section id="title">
+  <h1><%= @amusement_park.name %></h1>
+  <p>Cost of Admissions: <%= @amusement_park.admission_cost %></p>
+</section>
+
+<section id="mechanics">
+  <h2>All Mechanics Working on Rides:</h2>
+  <% @amusement_park.unique_mechanics.each do |mechanic| %>
+    <p><%= mechanic.name %></p>
+  <% end %>
+</section>
+
+<section id="rides">
+  <h2>All Rides:</h2>
+  <% @amusement_park.rides.each do |ride| %>
+    <section id="ride-<%= ride.id %>">
+      <p><%= ride.name %></p>
+    </section>
+  <% end %>
+</section>
