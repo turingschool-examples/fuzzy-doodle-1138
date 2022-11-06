@@ -2,3 +2,6 @@
 
 <center>Name: <%= @park.name %></center>
 <center>Cost: $<%= @park.admission_cost %></center>
+<center>Mechanics: <% @park.park_mechanics.each do |mechanic| %>
+<%= mechanic.name %>
+<% end %>

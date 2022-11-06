@@ -39,10 +39,11 @@ RSpec.describe 'Amusement Park Show' do
       expect(page).to have_content("#{@disney.admission_cost}")
     end
 
-    xit 'I see the name of all mechanics working on rides at that park' do 
+    it 'I see the name of all mechanics working on rides at that park' do 
       visit "amusement_parks/#{@disney.id}"
 
-      
+      expect(page).to have_content(@ashley.name)
+      expect(page).to have_content(@abdul.name)
     end
   end
 end
