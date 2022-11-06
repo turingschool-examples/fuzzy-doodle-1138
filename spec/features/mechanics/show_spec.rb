@@ -45,5 +45,11 @@ RSpec.describe 'Mechanic Show' do
       expect(page).to have_content(@coaster.name)
       expect(page).to have_content(@whirl.name)
     end
+
+    it 'I see a form to add a ride to their workload' do 
+      visit "/mechanics/#{@ashley.id}"
+
+      expect(page).to have_content("Add A Ride!")
+    end
   end
 end
