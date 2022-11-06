@@ -3,4 +3,6 @@ Rails.application.routes.draw do
 
   get 'mechanics/:id', to: "mechanics#show"
   post 'mechanics/:id/rides/new', to: "mechanic_rides#create" #not just to the mechanic, this is where the joins come in ashley!! 
+
+  get 'amusement_parks/:id', to: "amusement_parks#show"
 end
