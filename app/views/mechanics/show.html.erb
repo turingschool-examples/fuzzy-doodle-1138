@@ -2,4 +2,6 @@
 
 <center>Mechanic Name: <%= @mechanic.name %></center>
 <center>Years Of Experience: <%= @mechanic.years_experience %></center>
-
+<center>Rides Working On: <% @mechanic.rides.each do |ride| %>
+<%= ride.name %>
+<% end %></center>

@@ -38,5 +38,12 @@ RSpec.describe 'Mechanic Show' do
 
       expect(page).to have_content("Years Of Experience: #{@ashley.years_experience}")
     end
+
+    it 'shows all the rides they are working on' do 
+      visit "/mechanics/#{@ashley.id}"
+      # save_and_open_page
+      expect(page).to have_content(@coaster.name)
+      expect(page).to have_content(@whirl.name)
+    end
   end
 end
