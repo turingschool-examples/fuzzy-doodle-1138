@@ -46,10 +46,16 @@ RSpec.describe 'Mechanic Show' do
       expect(page).to have_content(@whirl.name)
     end
 
-    it 'I see a form to add a ride to their workload' do 
-      visit "/mechanics/#{@ashley.id}"
+    it 'I see a form to add a ride to their workload' do
+        visit "/mechanics/#{@ashley.id}"
 
-      expect(page).to have_content("Add A Ride!")
+        expect(page).to have_content("Add A Ride!")
+
+        fill_in(:ride_id, with: "#{@spin.id}")
+        click_button("Submit")
+        
+        expect(current_path).to eq("/mechanics/#{@ashley.id}")
+        expect(page).to have_content("Tea Cups")
     end
   end
 end
