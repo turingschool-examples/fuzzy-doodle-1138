@@ -3,10 +3,16 @@
 <h3>Years of Experience: <%= @mechanic.years_experience %> </h3>
 
 <div id="mechanic-rides">
-  <h3>Rides</h3>
+  <h3>Current rides they’re working on:</h3>
   <ul>
     <% @mechanic.rides.each do |ride| %>
     <li> <%= ride.name %> </li>
     <% end %>
   </ul>
 </div>
+
+<%= form_with url: "#{mechanic_path(@mechanic)}", method: :post do |form| %>
+  <%= form.label :add_ride_id %>
+  <%= form.number_field :add_ride_id %>
+  <%= form.submit 'Submit' %>
+<% end %>
