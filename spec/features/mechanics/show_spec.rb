@@ -42,6 +42,15 @@ RSpec.describe 'Mechanic Show' do
           expect(page).to have_content(@dark_knight.name)
         end
       end
+      
+      it "When I enter an invalid ride ID I am redirected to the show page
+      and presented with an error" do
+        fill_in "add_ride_id", with: 5287
+        click_button 'Submit'
+        save_and_open_page
+        expect(current_path).to eq(mechanic_path(@mechanic))
+        expect(page).to have_content('Please enter a valid ride ID')
+      end
     end
     
   end

@@ -1,3 +1,7 @@
+<% flash.each do |type, msg| %>
+  <%= msg %>
+<% end %>
+
 <h1>Mechanic: <%= @mechanic.name %></h1>
 
 <h3>Years of Experience: <%= @mechanic.years_experience %> </h3>
@@ -11,7 +15,7 @@
   </ul>
 </div>
 
-<%= form_with url: "#{mechanic_path(@mechanic)}", method: :post do |form| %>
+<%= form_with url: "#{mechanic_path(@mechanic)}", method: :post, local: true do |form| %>
   <%= form.label :add_ride_id %>
   <%= form.number_field :add_ride_id %>
   <%= form.submit 'Submit' %>
