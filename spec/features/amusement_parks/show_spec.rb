@@ -39,6 +39,7 @@ RSpec.describe 'AmusementParks Show Page', type: :feature do
     it 'i see names of all mechanics working on that parks rides and list is unique' do 
       visit amusement_park_path(@park1)
       expect(page).to have_content("Mechanics: Jim Steve")
+      
       expect(page).to_not have_content("Mechanics: Mary")
       expect(page).to_not have_content("Mechanics: Jim Steve Steve")
     end
@@ -53,9 +54,11 @@ RSpec.describe 'AmusementParks Show Page', type: :feature do
 
     it 'list of rides is ordered by average mechanic experience' do 
       visit amusement_park_path(@park2)
-
-      expect("Jumpy Castle - Mechanic Experience Level on this Ride: 6.0").to appear_before("Roller Coaster - Mechanic Experience Level on this Ride: 8.0")
-
+      # save_and_open_page
+      # require 'pry'; binding.pry
+      within('div#rides') do 
+        expect("Jumpy Castle").to appear_before("Roller Coaster")
+      end
     end
   end 
 end 

@@ -31,4 +31,8 @@ RSpec.describe AmusementPark, type: :model do
     expect(@park2.unique_mechanics).to eq([@mary.name])
 
   end
+  it 'list of rides is ordered by average experience' do 
+    expect(@park1.experience_order).to eq([@spin, @coaster, @river])
+  end
+  
 end

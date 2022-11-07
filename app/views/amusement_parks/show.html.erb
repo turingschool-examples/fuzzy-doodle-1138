@@ -4,10 +4,11 @@
   <%=mechanic%>
 <%end%>
 </p>
-
+<div id= rides>
 <p>Rides at <%=@amusement_park.name%>:
-<%@amusement_park.rides.each do |ride|%>
-  <%=ride.name%> -
-  Mechanic Experience Level on this Ride: <%=ride.avg_experience%>
+<%@amusement_park.experience_order.each do |ride|%>
+  <p><%=ride.name%> -
+  Mechanic Experience Level on this Ride: <%=ride.avg_experience%></p>
 <%end%>
 </p>
+</div>
