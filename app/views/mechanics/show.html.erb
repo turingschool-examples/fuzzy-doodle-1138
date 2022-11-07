@@ -6,3 +6,8 @@
 <% @mechanic.rides.each do |ride| %>
     <h3><%= ride.name %></h3>
 <% end %>
+<%= form_with url: "/mechanics/#{@mechanic.id}", method: "PATCH" do |form| %>
+    <%= form.label :ride_id, 'Ride Id:'%>
+    <%= form.text_field :ride %>
+    <%= form.submit "Update" %>
+<% end %>
