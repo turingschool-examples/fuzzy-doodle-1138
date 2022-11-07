@@ -1,0 +1,16 @@
+<div id="machanic-info">
+  <p>Machanic: <%= @machanic.name %></p>
+  <p>Years of Experience <%= @machanic.years_experience %></p>
+</div>
+
+<div id="rides-list">
+Current rides they're working on:
+  <% @rides.each do |ride| %>
+    <%= ride.name %>
+  <% end %>
+</div>
+
+<div id="add-ride-form">
+  <%= form_with model: Machanic, local: true do |form| %>
+    <%= form.select %>
+</div>
