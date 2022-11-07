@@ -18,7 +18,7 @@ RSpec.describe 'Mechanics Show Page', type: :feature do
     end
     it 'i see name, years experience, and names of all rides they are working on' do 
       visit mechanic_path(@steve)
-      expect(page).to have_content("Name: Steve")
+      expect(page).to have_content("Mechanic Name: Steve")
       expect(page).to have_content("Years of Experience: 4")
       expect(page).to have_content("Rides Steve is working on: Coaster Lazy River")
       expect(page).to_not have_content("Rides Steve is working on: Spin Around")
@@ -33,6 +33,7 @@ RSpec.describe 'Mechanics Show Page', type: :feature do
       click_button "Add Ride"
       expect(current_path).to eq(mechanic_path(@steve))
       expect(page).to have_content("Rides Steve is working on: Spin Around Coaster Lazy River")
+      expect(page).to_not have_content("Rides Steve is working on: Run")
 
     end
   end
