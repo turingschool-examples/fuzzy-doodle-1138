@@ -1,4 +1,4 @@
 class MachanicRide < ApplicationRecord
-  belongs_to :machanics
-  belongs_to :rides
+  belongs_to :machanic
+  belongs_to :ride
 end
