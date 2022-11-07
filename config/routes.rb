@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   
   resources :mechanics, only: [:show]
   post '/mechanics/:id', to: 'mechanics#new'
+  
+  resources :amusement_parks, only: [:show]
 end
