@@ -18,10 +18,13 @@ RSpec.describe Ride, type: :model do
     MechanicRide.create!(mechanic: @steve, ride: @coaster)
     MechanicRide.create!(mechanic: @steve, ride: @river)
     MechanicRide.create!(mechanic: @jim, ride: @spin)
+    MechanicRide.create!(mechanic: @steve, ride: @spin)
 
   end
-  it 'can return a unique list of mechanics working on the parks rides' do 
-    # require 'pry'; binding.pry
-    expect(@park1.unique_mechanics).to eq([@steve, @jim])
+  it 'can calculate the average experience of mechanics working on the ride' do 
+    expect(@spin.avg_experience).to eq(6)
+    expect(@river.avg_experience).to eq(4)
+    expect(@coaster.avg_experience).to_not eq(6)
+
   end
 end
