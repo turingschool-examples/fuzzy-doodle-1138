@@ -25,5 +25,10 @@ RSpec.describe AmusementPark, type: :model do
     belonging to the Amusement Park" do
       expect(@six_flags.unique_mechanics).to eq([@mechanic, @mike])
     end
+    
+    xit "#mech_avg_yrs_exp returns the average years of experience for
+    mechanics of a ride" do
+      expect(@six_flags.mech_avg_yrs_exp).to eq(@raging_bull, @dejavu)
+    end
   end
 end

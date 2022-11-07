@@ -33,5 +33,16 @@ RSpec.describe 'Amusement Park Show' do
         expect(page).to_not have_content(@adam.name)
       end
     end
+    
+    xit "I see a list of all of the park's rides, And next to the ride name I
+    see the average experience of the mechanics working on the ride" do
+      within("#park-rides") do
+        dejavu_avg_exp = @mechanic.years_experience
+        raging_bull_avg_exp = [@mechanic.years_experience, @mike.years_experience].sum/2
+        expect(page).to have_content("#{@dejavu.name} --- Ride Mechanic's Average Years Experience: #{dejavu_avg_exp.round(0)}")
+        expect(page).to have_content("#{@raging_bull.name} --- Ride Mechanic's Average Years Experience: #{raging_bull_avg_exp.round(0)}")
+        expect(page).to have_content("#{@dark_knight.name} --- Ride Mechanic's Average Years Experience: 0")
+      end
+    end
   end
 end

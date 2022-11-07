@@ -9,3 +9,12 @@
     <% end %>
   </ul>
 </div>
+
+<div id="park-rides">
+  <h3>Park Rides:</h3>
+  <ul>
+    <% @amusement_park.rides.each do |ride| %>
+    <li> <%= ride.name %> </li>
+    <% end %>
+  </ul>
+</div>
