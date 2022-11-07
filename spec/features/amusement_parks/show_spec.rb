@@ -20,7 +20,7 @@ RSpec.describe "Amusement Park Show page" do
 
       it "And I see the names of all mechanics that are working on that park's rides, and I see that the list of mechanics is unique" do
         visit "/amusement_parks/#{@amusement_park.id}"
-        save_and_open_page
+        # save_and_open_page
         within("#mechanic-#{@mechanic.id}") do
           expect(page).to have_content(@mechanic.name)
         end
