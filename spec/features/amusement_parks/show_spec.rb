@@ -50,5 +50,12 @@ RSpec.describe 'AmusementParks Show Page', type: :feature do
       expect(page).to have_content("Roller Coaster - Mechanic Experience Level on this Ride: 8.0")
 
     end
+
+    it 'list of rides is ordered by average mechanic experience' do 
+      visit amusement_park_path(@park2)
+
+      expect("Jumpy Castle - Mechanic Experience Level on this Ride: 6.0").to appear_before("Roller Coaster - Mechanic Experience Level on this Ride: 8.0")
+
+    end
   end 
 end 

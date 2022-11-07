@@ -6,4 +6,8 @@ class Ride < ApplicationRecord
   def avg_experience
     mechanics.average(:years_experience)
   end
+
+  def self.experience_order 
+    select('rides.*, avg(mechanics.years_experience) as experience').joins(:mechanics).order('experience desc').group(:id)
+  end
 end

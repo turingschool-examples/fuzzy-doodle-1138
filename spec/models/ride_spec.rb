@@ -25,6 +25,9 @@ RSpec.describe Ride, type: :model do
     expect(@spin.avg_experience).to eq(6)
     expect(@river.avg_experience).to eq(4)
     expect(@coaster.avg_experience).to_not eq(6)
+  end
 
+  it 'list of rides is ordered by average experience' do 
+    expect(Ride.experience_order).to eq([@spin, @coaster, @river])
   end
 end
