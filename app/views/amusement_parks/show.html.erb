@@ -7,6 +7,7 @@
 
 <p>Rides at <%=@amusement_park.name%>:
 <%@amusement_park.rides.each do |ride|%>
-  <%=ride.name%>
+  <%=ride.name%> -
+  Mechanic Experience Level on this Ride: <%=ride.avg_experience%>
 <%end%>
 </p>

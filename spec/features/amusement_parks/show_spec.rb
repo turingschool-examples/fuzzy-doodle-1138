@@ -9,11 +9,21 @@ RSpec.describe 'AmusementParks Show Page', type: :feature do
       @coaster= @park1.rides.create!(name: "Coaster", thrill_rating: 8, open: true)
       @river = @park1.rides.create!(name: "Lazy River", thrill_rating: 2, open: false)
       @steve = Mechanic.create!(name: "Steve", years_experience: 4)
-      @jim = Mechanic.create!(name: "Jim", years_experience: 8)
+      @jim = Mechanic.create!(name: "Jim", years_experience: 14)
       @mary = Mechanic.create!(name: "Mary", years_experience: 6)
       MechanicRide.create!(mechanic: @steve, ride: @coaster)
       MechanicRide.create!(mechanic: @steve, ride: @river)
       MechanicRide.create!(mechanic: @jim, ride: @spin)
+
+      @park2 = AmusementPark.create!(name: "MOA", admission_cost: 100)
+      @jump= @park2.rides.create!(name: "Jumpy Castle", thrill_rating: 8, open: true)
+      @roller_coaster = @park2.rides.create!(name: "Roller Coaster", thrill_rating: 8, open: true)
+      MechanicRide.create!(mechanic: @mary, ride: @jump)
+      MechanicRide.create!(mechanic: @mary, ride: @roller_coaster)
+      MechanicRide.create!(mechanic: @steve, ride: @roller_coaster)
+      MechanicRide.create!(mechanic: @jim, ride: @roller_coaster)
+
+
 
     end
 
@@ -34,8 +44,10 @@ RSpec.describe 'AmusementParks Show Page', type: :feature do
     end
 
     it 'i see list of all the parks rides with mechanics average experience next to it' do 
-      visit amusement_park_path(@park1)
-      expect(page).to have_content("Rides at #{@park1.name}: Spin Around Run Coaster Lazy River")
+      visit amusement_park_path(@park2)
+      expect(page).to have_content("Rides at MOA:")
+      expect(page).to have_content("Jumpy Castle - Mechanic Experience Level on this Ride: 6.0") 
+      expect(page).to have_content("Roller Coaster - Mechanic Experience Level on this Ride: 8.0")
 
     end
   end 
