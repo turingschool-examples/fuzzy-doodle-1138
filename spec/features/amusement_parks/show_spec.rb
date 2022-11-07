@@ -13,10 +13,10 @@ RSpec.describe 'the Amusement Park show page' do
     @ride3 = @park.rides.create!(name: 'Feed the Ducks', thrill_rating: -10, open: true)
 
     RideMechanic.create!(ride: @ride1, mechanic: @mechanic1)
-    RideMechanic.create!(ride: @ride2, mechanic: @mechanic1)
     RideMechanic.create!(ride: @ride2, mechanic: @mechanic2)
+    RideMechanic.create!(ride: @ride2, mechanic: @mechanic3)
+    RideMechanic.create!(ride: @ride3, mechanic: @mechanic1)
     RideMechanic.create!(ride: @ride3, mechanic: @mechanic2)
-    RideMechanic.create!(ride: @ride3, mechanic: @mechanic3)
 
     visit amusement_park_path(@park)
   end
@@ -36,7 +36,7 @@ RSpec.describe 'the Amusement Park show page' do
     end
   end
 
-  xit 'shows all parks rides' do 
+  it 'shows all parks rides' do 
     within '#rides' do 
       expect(page).to have_content(@ride1.name)
       expect(page).to have_content(@ride2.name)
@@ -44,17 +44,23 @@ RSpec.describe 'the Amusement Park show page' do
     end
   end
 
-  xit 'shows avg experience of mechanics working on each ride' do 
+  it 'shows avg experience of mechanics working on each ride' do 
     within "#ride-#{@ride1.id}" do 
       expect(page).to have_content('50 years')
     end
     within "#ride-#{@ride2.id}" do 
-      expect(page).to have_content('30 years')
+      expect(page).to have_content('15 years')
     end
     within "#ride-#{@ride3.id}" do 
-      expect(page).to have_content('15 years')
+      expect(page).to have_content('30 years')
     end
   end
 
-  it 'orders rides by avg experience of mechanics'
+  it 'orders rides by avg experience of mechanics' do 
+    within '#rides' do 
+      expect(@ride1.name).to appear_before(@ride3.name)
+      expect(@ride3.name).to appear_before(@ride2.name)
+      save_and_open_page
+    end
+  end
 end

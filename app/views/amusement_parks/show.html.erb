@@ -12,9 +12,9 @@
 
 <section id="rides">
   <h2>All Rides:</h2>
-  <% @amusement_park.rides.each do |ride| %>
+  <% @amusement_park.rides_by_mechanic_experience.each do |ride| %>
     <section id="ride-<%= ride.id %>">
-      <p><%= ride.name %></p>
+      <p><%= "#{ride.name} - Average Mechanic Experience: #{ride.avg_experience.to_i} years" %></p>
     </section>
   <% end %>
 </section>
