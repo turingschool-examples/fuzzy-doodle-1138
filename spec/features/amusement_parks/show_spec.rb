@@ -29,6 +29,8 @@ RSpec.describe 'AmusementParks Show Page', type: :feature do
     it 'i see names of all mechanics working on that parks rides and list is unique' do 
       visit amusement_park_path(@park1)
       expect(page).to have_content("Mechanics: Jim Steve")
+      expect(page).to_not have_content("Mechanics: Mary")
+      expect(page).to_not have_content("Mechanics: Jim Steve Steve")
 
     end
   end 
