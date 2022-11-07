@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_09_211949) do
+ActiveRecord::Schema.define(version: 2022_11_07_193722) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,6 +18,22 @@ ActiveRecord::Schema.define(version: 2022_09_09_211949) do
   create_table "amusement_parks", force: :cascade do |t|
     t.string "name"
     t.integer "admission_cost"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "machanic_rides", force: :cascade do |t|
+    t.bigint "machanics_id"
+    t.bigint "rides_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["machanics_id"], name: "index_machanic_rides_on_machanics_id"
+    t.index ["rides_id"], name: "index_machanic_rides_on_rides_id"
+  end
+
+  create_table "machanics", force: :cascade do |t|
+    t.string "name"
+    t.integer "years_experience"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -32,5 +48,7 @@ ActiveRecord::Schema.define(version: 2022_09_09_211949) do
     t.index ["amusement_park_id"], name: "index_rides_on_amusement_park_id"
   end
 
+  add_foreign_key "machanic_rides", "machanics", column: "machanics_id"
+  add_foreign_key "machanic_rides", "rides", column: "rides_id"
   add_foreign_key "rides", "amusement_parks"
 end
