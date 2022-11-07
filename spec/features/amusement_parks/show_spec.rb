@@ -31,6 +31,11 @@ RSpec.describe 'AmusementParks Show Page', type: :feature do
       expect(page).to have_content("Mechanics: Jim Steve")
       expect(page).to_not have_content("Mechanics: Mary")
       expect(page).to_not have_content("Mechanics: Jim Steve Steve")
+    end
+
+    it 'i see list of all the parks rides with mechanics average experience next to it' do 
+      visit amusement_park_path(@park1)
+      expect(page).to have_content("Rides at #{@park1.name}: Spin Around Run Coaster Lazy River")
 
     end
   end 

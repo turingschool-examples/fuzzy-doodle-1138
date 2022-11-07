@@ -4,3 +4,9 @@
   <%=mechanic%>
 <%end%>
 </p>
+
+<p>Rides at <%=@amusement_park.name%>:
+<%@amusement_park.rides.each do |ride|%>
+  <%=ride.name%>
+<%end%>
+</p>
