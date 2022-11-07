@@ -1,6 +1,6 @@
 <p>Park Name: <%=@amusement_park.name%></p>
 <p>Admissions Price: $<%=@amusement_park.admission_cost%></p>
-<p>Mechanics: <%@amusement_park.rides.each do |ride|%>
-  <%=ride.mechanics%>
+<p>Mechanics: <%@amusement_park.unique_mechanics.each do |mechanic|%>
+  <%=mechanic%>
 <%end%>
 </p>

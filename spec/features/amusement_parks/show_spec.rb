@@ -22,12 +22,13 @@ RSpec.describe 'AmusementParks Show Page', type: :feature do
       expect(page).to have_content("Park Name: Six Flags")
       expect(page).to have_content("Admissions Price: $75")
       # require 'pry'; binding.pry
-      expect(page).to have_content("Mechanics: Steve Jim")
 
 
     end
 
     it 'i see names of all mechanics working on that parks rides and list is unique' do 
+      visit amusement_park_path(@park1)
+      expect(page).to have_content("Mechanics: Jim Steve")
 
     end
   end 
