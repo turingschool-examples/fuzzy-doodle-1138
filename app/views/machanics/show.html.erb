@@ -5,12 +5,18 @@
 
 <div id="rides-list">
 Current rides they're working on:
-  <% @rides.each do |ride| %>
-    <%= ride.name %>
-  <% end %>
+  <ul>
+    <% @rides.each do |ride| %>
+      <li><%= ride.name %></li>
+    <% end %>
+  </ul>
 </div>
 
 <div id="add-ride-form">
-  <%= form_with model: Machanic, local: true do |form| %>
-    <%= form.select %>
+  <%= form_with url: machanic_rides_path, method: :post, local: true do |form| %>
+    <%= form.hidden_field :machanic_id, value: @machanic.id %>
+    <%= form.label :ride_id, "Ride ID:" %>
+    <%= form.text_field :ride_id %>
+    <%= form.submit "Submit" %>
+  <% end %>
 </div>

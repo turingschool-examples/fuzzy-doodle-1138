@@ -36,9 +36,24 @@ RSpec.describe 'Machanic Show Page', type: :feature do
           expect(page).to_not have_content(@ride_3.name)
         end
       end
-      it 'a form to add a ride to their workload'
-      it 'when i fill in that field with an id of an existing ride and click "Submit"'
-      it 'I am taken back to the machanics show page and I see the name of the ride added'
+      it 'a form to add a ride to their workload' do
+        within "#add-ride-form" do
+          expect(find('form')).to have_content("Ride ID")
+        end
+      end
+      describe 'when i fill in that field with an id of an existing ride and click "Submit"' do
+        it 'I am taken back to the machanics show page and I see the name of the ride added' do
+          within "#add-ride-form" do
+            fill_in "Ride ID:", with: "#{@ride_3.id}"
+            click_button "Submit"
+
+            expect(current_path).to eq(machanic_path(@machanic_1))
+          end
+          within "#rides-list" do
+            expect(page).to have_content(@ride_3.name)
+          end
+        end
+      end
     end
   end
 end

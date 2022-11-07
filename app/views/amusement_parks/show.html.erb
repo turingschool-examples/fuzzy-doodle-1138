@@ -1,0 +1,22 @@
+<div id="park-info">
+  <p>Park: <%= @amusement_park.name %></p>
+  <p>Admission Cost: <%= @amusement_park.admission_cost %></p>
+</div>
+
+<div id="machanics-list">
+Machanics currently working on rides:
+  <ul>
+    <% @machanics.each do |machanic| %>
+      <li><%= machanic %></li>
+    <% end %>
+  </ul>
+</div>
+
+<div id="rides_list">
+Rides being worked on and average experience of the worker:
+  <ul>
+    <% @rides.each do |ride| %>
+      <li><%= ride.name %>: <%= ride.avg_exp %></li>
+    <% end %>
+  </ul>
+</div>
