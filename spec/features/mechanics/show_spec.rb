@@ -15,7 +15,12 @@ RSpec.describe '/mechanics/show' do
     @mr3 = MechanicRide.create!(ride_id: @ride3.id, mechanic_id: @mechanic.id)
   end
   it 'has mechanic name, experience and names of rides they work on' do
+    visit "/mechanics/#{@mechanic.id}"
 
-
+    expect(page).to have_content('Name: William')
+    expect(page).to have_content('Years of Experience: 1')
+    expect(page).to have_content('Intimidator')
+    expect(page).to have_content('Top Gun')
+    expect(page).to have_content('Borg')
   end
 end
