@@ -4,3 +4,9 @@ Rides <%=@mechanic.name%> is working on:
 <% @mechanic.rides.each do |ride|%>
   <%= ride.name%>
 <%end%>
+
+<%=form_with url: "/mechanics/#{@mechanic.id}", method: :post, local: true do |f| %>
+  <%=label_tag :ride_id, "Add a ride to this Mechanic's Workload"%>
+  <%= text_field_tag :ride_id, params[:ride_id]%>
+  <%=f.submit "Add Ride"%>
+<%end %>
