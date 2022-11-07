@@ -2,12 +2,24 @@
 
 
 <div id="information">
-  <p>Name: <%= @mechanic.name %> | Years of Experience: <%= @mechanic.years_experience %></p>
+  <p>Mechanic Name: <%= @mechanic.name %></p>
+  <p> Years of Experience: <%= @mechanic.years_experience %></p>
 </div>
 
-<h4> Rides: </h4>
+<h4> Current rides they're working on: </h4>
 <% @rides.each do |ride| %>
   <div id="ride-<%= ride.id %>">
     <p><%= ride.name %>
   </div>
 <% end %>
+<br>
+<section id="add_ride">
+  <b><p>Add a ride to workload:</p><b>
+
+    <%= form_with model: @ride, url: mechanic_rides_path(@mechanic.id), method: :post, local: true do |form| %>
+    <%= form.label "Ride id" %>
+    <%= form.number_field :ride_id %>
+    <%= form.submit "Submit" %>
+
+    <% end %>
+</section>
