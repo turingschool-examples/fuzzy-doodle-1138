@@ -5,4 +5,6 @@ Rails.application.routes.draw do
     resources :rides, only:[:create], :controller => "mechanic_rides"
   end
 
+  get "/amusement_parks/:id", to: "amusement_parks#show"
+
 end
