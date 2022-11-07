@@ -60,7 +60,6 @@ RSpec.describe 'the Amusement Park show page' do
     within '#rides' do 
       expect(@ride1.name).to appear_before(@ride3.name)
       expect(@ride3.name).to appear_before(@ride2.name)
-      save_and_open_page
     end
   end
 end
