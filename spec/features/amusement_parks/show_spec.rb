@@ -54,11 +54,14 @@ RSpec.describe 'AmusementParks Show Page', type: :feature do
 
     it 'list of rides is ordered by average mechanic experience' do 
       visit amusement_park_path(@park2)
-      # save_and_open_page
-      # require 'pry'; binding.pry
       within('div#rides') do 
-        expect("Jumpy Castle").to appear_before("Roller Coaster")
+        expect("Roller Coaster").to appear_before("Jumpy Castle")
       end
+
+      visit amusement_park_path(@park1)
+      expect("Spin Around").to appear_before("Coaster")
+      expect("Spin Around").to appear_before("Lazy River")
+      expect("Lazy River").to_not appear_before("Spin Around")
     end
   end 
 end 
