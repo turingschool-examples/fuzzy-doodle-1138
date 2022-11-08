@@ -31,6 +31,13 @@ RSpec.describe AmusementPark, type: :model do
         expect(@six.unique_mechanics).to match([@omar, @jimmy])
       end
     end
+
+    describe '#rides_sorted_by_exp' do
+      it 'returns the rides at a park sorted by average experience of mechanics' do
+        expect(@six.rides_sorted_by_exp).to match([@superman, @goliath, @viper])
+      end
+    end
+
   end
-  
+
 end

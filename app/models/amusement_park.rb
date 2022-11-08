@@ -6,4 +6,11 @@ class AmusementPark < ApplicationRecord
   def unique_mechanics
     mechanics.distinct
   end
+
+  def rides_sorted_by_exp
+    rides.joins(:mechanics)
+    .select('rides.*, avg(mechanics.years_experience) AS average_exp')
+    .group('rides.id')
+    .order(average_exp: :desc)
+  end
 end
