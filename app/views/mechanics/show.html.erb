@@ -1,0 +1,12 @@
+<h1> Mechanic Show Page </h1>
+ 
+ <div id="mechanic">
+  <p> Name: <%= @mechanic.name %> </p>
+  <p> Years of Experience: <%= @mechanic.experience %> </p>
+</div>
+
+<div id="mechanic-rides">
+  <% @mechanic.rides.each do |ride| %>
+    <%= ride.name %>
+  <% end%>
+</div>
