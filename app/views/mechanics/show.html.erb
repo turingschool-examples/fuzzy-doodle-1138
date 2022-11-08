@@ -9,4 +9,12 @@
   <% @mechanic.rides.each do |ride| %>
   <%= ride.name %> 
   <% end %>
+
+  <div>
+    <%= form_with url: "/mechanics/#{@mechanic.id}/rides", method: :post, local: true do |f| %>
+      <%= f.label :ride_id %>
+      <%= f.text_field :ride_id %>
+      <%= f.submit "Add ride to mechanic" %>
+    <% end %> 
+  </div>
 </div>
