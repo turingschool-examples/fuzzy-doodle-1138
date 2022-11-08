@@ -1,3 +1,4 @@
 Rails.application.routes.draw do
-  resources(:mechanics,   only: :show)
+  get("/mechanics/:id",   to: "mechanics#show")
+  post("/mechanics/:id",   to: "mechanics#create")
 end

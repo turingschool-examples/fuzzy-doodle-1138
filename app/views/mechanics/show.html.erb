@@ -2,7 +2,18 @@
 
 <p>-Name:<%=@mechanic.name%></p>
 <p>Years experience:<%=@mechanic.years_experience%></p>
-
+<p>Names of rides being worked on: </p>
   <% @mechanic.rides.map do|ride| %>
-    <p>Names of rides being worked on:<%= ride.name%></p>
+    <%=ride.name%>
   <% end %>
+    <div id="uno">
+      <h2>Current rides they're working on:</h2>
+      <%= form_with url: "/mechanics/#{@mechanic.id}", method: :post, local: true do |f|  %>
+        <%= f.label :ride_id,"Enter ride ID" %>
+        <%= f.number_field :ride_id %>
+        <%= f.submit "Save" %>
+        <%end %>
+
+
+
+    </div>
