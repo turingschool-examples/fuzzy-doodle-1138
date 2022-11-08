@@ -1,0 +1,13 @@
+<h3> Amusement Park Show Page </h3>
+
+<div id="park">
+  <p>Park Name: <%= @amusement_park.name %>
+  <p>Cost of Admission: <%= @amusement_park.admission_cost %>
+</div>
+
+<ul id="park-mechanics">
+  <p>Park Mechanics: </p>
+    <% @amusement_park.mechanics.distinct.each do |mechanic| %>
+      Name: <%= mechanic.name  %>
+    <% end%>
+</ul>
