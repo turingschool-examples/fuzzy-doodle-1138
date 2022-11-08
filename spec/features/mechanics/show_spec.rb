@@ -62,5 +62,4 @@ RSpec.describe 'Mechanic Show page' do
     end
   end
 
-  describe 'User Story 3 '
 end
