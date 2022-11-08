@@ -27,5 +27,32 @@ RSpec.describe 'mechanics' do
         expect(page).to_not have_content(ride3.name)
       end
     end
+
+    it 'has a form to fill in with field of existing ride that can fill in ID and add ride to mechanic' do
+      visit "/mechanics/#{mechanic1.id}"
+
+      within '#rides' do
+        expect(page).to have_content(ride1.name)
+        expect(page).to have_content(ride2.name)
+        expect(page).to_not have_content(ride3.name)
+      end
+
+      within '#new_ride' do
+        expect(page).to have_selector(:css, 'form')
+        expect(find('form')).to have_content('Ride id:')
+        expect(page).to have_button('Add New Ride')
+
+        fill_in('ride_id', with: ride3.id)
+        click_button('Add New Ride')
+      end
+
+      expect(current_path).to eq("/mechanics/#{mechanic1.id}")
+
+      within '#rides' do
+        expect(page).to have_content(ride1.name)
+        expect(page).to have_content(ride2.name)
+        expect(page).to have_content(ride3.name)
+      end
+    end
   end
 end

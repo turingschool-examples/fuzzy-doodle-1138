@@ -4,9 +4,17 @@
 
 Rides Working On:
 <div id='rides'>
-<% @mechanic.rides.each do |ride| %>
-    <ul>
+  <ul>
+    <% @mechanic.rides.each do |ride| %>
      <li><%= ride.name %></li>
-    <ul>
-<% end %>
-<div>
+    <% end %>
+  <ul>
+</div>
+
+<div id='new_ride'>
+    <%= form_with url: mechanic_rides_path(@mechanic.id), method: :post, local: true do |form| %>
+        <%= form.label 'Ride id:' %>
+        <%= form.text_field :ride_id %>
+        <%= form.submit "Add New Ride" %>
+    <% end %>
+</div>
