@@ -36,8 +36,23 @@ RSpec.describe 'the mechanics show page' do
 
     within "#add_ride_to_workload" do
       expect(page).to have_content('Add a ride to workload:')
-      expect(page).to have_content('Ride Id:')
+      expect(page).to have_field('Ride Id:')
       expect(page).to have_button('Add Ride')
     end
+  end
+
+  it 'can add a ride to the mechanic workload using the ride ID' do
+    visit "/mechanics/#{@omar.id}"
+
+    fill_in('Ride Id:', with: "#{@viper.id}")
+    click_on('Add Ride')
+
+    expect(current_path).to eq("/mechanics/#{@omar.id}")
+    within "#rides_maintained" do
+      expect(page).to have_content(@goliath.name)
+      expect(page).to have_content(@superman.name)
+      expect(page).to have_content(@viper.name)
+    end
+    save_and_open_page
   end
 end
