@@ -26,5 +26,14 @@ RSpec.feature "Mechanic Show Page", type: :feature do
       expect(page).to have_content('The Scrambler')
       expect(page).to have_content('Jaws')
     end
+    it 'has a form that adds a ride to the workload of the mechanic and directs back to the show page where the added ride can be seen' do
+      visit mechanic_path(@kara)
+      fill_in 'Ride Id:', with: @ferris.id
+      click_button 'Submit'
+
+      expect(page).to have_current_path(mechanic_path(@kara))
+      expect(page).to have_content('The Scrambler')
+      expect(page).to have_content('Ferris Wheel')
+    end
   end
 end
