@@ -46,4 +46,27 @@ RSpec.describe "Amusement Park Show Page" do
       expect(page).to have_no_content(@mechanic_4.name)
     end
   end
+
+  xit "has a list of all of the parks rides and next to each ride it shows the average 
+    experience of the mechanics working on the ride" do
+      visit "/amusement_park/#{@six_flags.id}"
+
+      within("#rides") do
+        expect(page).to have_content("Ride: #{@hurler.name}, Mechanic Avg Yrs Experience: #{@hurler.avg_mech_exper}")
+        expect(page).to have_content("Ride: #{@scrambler.name}, Mechanic Avg Yrs Experience: #{@scrambler.avg_mech_exper}")
+        expect(page).to have_content("Ride: #{@ferris.name}, Mechanic Avg Yrs Experience: #{@ferris.avg_mech_exper}")
+        expect(page).to have_no_content(@jaws.name)
+      end
+  end
+
+  xit "the list of rides is ordered by the average experience of the mechanics of mechanics
+    working on the ride" do
+      visit "/amusement_park/#{@six_flags.id}"
+
+      within("rides") do
+        expect(@hurler.name).to appear_before(@scrambler.name)
+        expect(@ferris.name).to appear_before(@scrambler.name)
+        expect(@ferris.name).to_not appear_before(@hurler.name)
+      end
+  end
 end

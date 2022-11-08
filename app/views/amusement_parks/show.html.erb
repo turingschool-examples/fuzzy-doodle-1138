@@ -11,3 +11,10 @@
       Name: <%= mechanic.name  %>
     <% end%>
 </ul>
+
+<ul id="rides">
+  <p>Park Mechanics: </p>
+    <% @amusement_park.rides.each do |ride| %>
+      Name: <%= ride.name  %> Mechanic Avg Yrs Experience: <%= ride.avg_mech_exper %>
+    <% end%>
+</ul>
