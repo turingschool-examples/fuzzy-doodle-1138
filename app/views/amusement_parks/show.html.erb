@@ -1,0 +1,9 @@
+<h1><%= @park.name %></h1>
+<h4>Price: $<%= @park.admission_cost %></h3>
+
+<section id="mechanics">
+  <h3>Mechanics:</h3>
+    <% @park.list_mechanics.each do |mechanic| %>
+      <p><%= mechanic.name %></p>
+    <% end %>
+</section>
