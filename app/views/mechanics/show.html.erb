@@ -5,7 +5,7 @@
 
   <p>Years of Experience: <%= @mechanic.years_experience %></p>
 
-  <h2> Rides that <%= @mechanic.name %> has worked on </h2>
+  <h2> Current rides they are working on: <%= @mechanic.name %> </h2>
   <% @mechanic.rides.each do |ride| %>
   <%= ride.name %> 
   <% end %>

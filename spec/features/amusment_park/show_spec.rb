@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe AmusementPark, type: :model do
+RSpec.describe 'amusement park show page' do
   before :each do
     @six_flags = AmusementPark.create!(name: 'Six Flags', admission_cost: 75)
     @universal = AmusementPark.create!(name: 'Universal Studios', admission_cost: 80)
@@ -19,15 +19,21 @@ RSpec.describe AmusementPark, type: :model do
     @bobby = Mechanic.create!(name: "Bobby", years_experience: 19)
     @bobby_ride = MechanicRide.create!(mechanic_id: @bobby.id, ride_id: @jaws.id )
   end
-  describe 'relationships' do
-    it { should have_many(:rides) }
-    it { should have_many(:mechanics).through(:rides)}
-  end
+  describe 'as a visitor' do
+    it 'I see the name and pice of admissions for that amusement park' do
+      visit amusement_park_path(@six_flags)
+     
 
-  describe '#mechanics_count' do
-    it "should return a count of distinct mechanics" do
-      
-      expect(@six_flags.mechanics_names).to eq([@john, @bill])
+      expect(page).to have_content(@six_flags.name)
+      expect(page).to have_content(@six_flags.admission_cost)
+    end
+
+    it 'it shows all the mechanics working at that park' do
+      visit amusement_park_path(@six_flags)
+
+      expect(page).to have_content(@john.name, count: 1)
+      expect(page).to have_content(@bill.name)
+      expect(page).to_not have_content(@bobby.name)
     end
   end
 end
