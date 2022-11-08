@@ -16,6 +16,7 @@ RSpec.describe 'the amusement parks show page' do
     @ride_mechanic1 = RideMechanic.create!(ride_id: @goliath.id, mechanic_id: @omar.id)
     @ride_mechanic2 = RideMechanic.create!(ride_id: @superman.id, mechanic_id: @omar.id)
     @ride_mechanic3 = RideMechanic.create!(ride_id: @viper.id, mechanic_id: @jimmy.id)
+    @ride_mechanic3 = RideMechanic.create!(ride_id: @goliath.id, mechanic_id: @jimmy.id)
   end
 
   it 'displays the name and price of admissions for that park' do
@@ -24,6 +25,15 @@ RSpec.describe 'the amusement parks show page' do
     within "#amusement_park_info" do
       expect(page).to have_content("Park Name: #{@six.name}")
       expect(page).to have_content("Price of Admission: $75.00")
+    end
+  end
+
+  it 'display a unique list of all mechanics working on rides' do
+    visit "/amusement_parks/#{@six.id}"
+
+    within "#mechanics_lists" do
+      expect(page).to have_content(@omar.name).once
+      expect(page).to have_content(@jimmy.name).once
     end
   end
 end
