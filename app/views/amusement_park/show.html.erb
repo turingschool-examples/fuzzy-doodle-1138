@@ -1,1 +1,7 @@
 <h1>AmusementPark Show page</h1>
+
+<% @amusement_park.rides.each do|ride| %>
+
+<p><%= ride.name %></p>
+<p>Average years mechanic has:<%=@mechanic.average_experience %></p>
+<% end %>

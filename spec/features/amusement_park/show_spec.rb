@@ -20,6 +20,9 @@ RSpec.describe("AmusementPark Show page") do
     describe("And next to the ride name I see the average experience of the mechanics working on the ride,") do
       it("And I see the list of rides is ordered by the average experience of mechanics working on the ride.") do
         visit(amusement_park_path(@six_flags))
+        save_and_open_page
+        expect(page).to(have_content("The Hurler"))
+        expect(page).to(have_content("Average years experience mechanic has:2.0"))
       end
     end
   end
