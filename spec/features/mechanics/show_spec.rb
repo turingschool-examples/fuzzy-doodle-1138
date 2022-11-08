@@ -34,6 +34,38 @@ RSpec.describe 'mechanics show page (/mechanics/:id)' do
           expect(page).to have_content("The Kiss Raise")
         end
       end
+
+      it '- shows a form to add a ride to their workload' do
+        visit mechanic_path(@larry)
+
+        expect(page).to have_selector(:css, "form")
+        expect(page).to have_field(:ride_id)
+        expect(page).to have_button("Submit")
+      end
+
+      it '- when I fill in that field with an id of an existing ride and click Submit,
+      I am taken back to that mechanics show page and I see the name of that newly added
+      ride on this mechanics show page' do
+
+      end
     end
   end
 end
+
+# I see a form to add a ride to their workload
+# When I fill in that field with an id of an existing ride and click Submit
+# I’m taken back to that mechanic's show page
+# And I see the name of that newly added ride on this mechanic's show page
+
+# Ex:
+# Mechanic: Kara Smith
+# Years of Experience: 11
+
+# Current rides they’re working on:
+#   The Frog Hopper
+#   Fahrenheit
+#   The Kiss Raise
+
+# Add a ride to workload:
+# Ride Id: |_pretend_this_is_a_textfield_|
+# Submit
