@@ -8,6 +8,8 @@ RSpec.describe "the mechanic's show page" do
     @ride_1 = @amusement_park.rides.create!(name: "Barf-a-lot", thrill_rating: 10, open: true)
     @ride_2 = @amusement_park.rides.create!(name: "Merry Go Round", thrill_rating: 10, open: false)
     @ride_3 = @amusement_park.rides.create!(name: "Gummi Coaster", thrill_rating: 8, open: true)
+    @ride_4 = @amusement_park.rides.create!(name: "House of Heartless", thrill_rating: 6, open: false)
+    @ride_5 = @amusement_park.rides.create!(name: "Blackpearl", thrill_rating: 7, open: true)
     @sam.rides << @ride_1
     @sam.rides << @ride_2
     @abbas.rides << @ride_3
@@ -23,5 +25,19 @@ RSpec.describe "the mechanic's show page" do
     expect(page).to have_content("Barf-a-lot")
     expect(page).to_not have_content("Abbas")
     expect(page).to_not have_content("Gummi Coaster")
+  end
+
+  it "has a field and a button to add a ride to a mechanic" do
+    visit mechanic_path(@sam)
+    
+    expect(page).to have_content("Add a ride to workload:")
+    expect(page).to have_selector(:css, "form")
+    expect(page).to have_field("mechanic_ride_id")
+    
+    fill_in "mechanic_ride_id", with: "#{@ride_4.id}"
+    click_on "Submit"
+
+    expect(current_path).to eql(mechanic_path(@sam))
+    expect(page).to have_content("House of Heartless")
   end
 end

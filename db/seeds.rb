@@ -16,3 +16,15 @@ Ride.destroy_all
 @ferris = @six_flags.rides.create!(name: 'Ferris Wheel', thrill_rating: 7, open: false)
 
 @jaws = @universal.rides.create!(name: 'Jaws', thrill_rating: 5, open: true)
+
+@sam = Mechanic.create!(name: "Sam", years_experience: 11)
+@abbas = Mechanic.create!(name: "Abbas", years_experience: 9)
+@amusement_park = AmusementPark.create!(name: "Dreamland", admission_cost: 50)
+@ride_1 = @amusement_park.rides.create!(name: "Barf-a-lot", thrill_rating: 10, open: true)
+@ride_2 = @amusement_park.rides.create!(name: "Merry Go Round", thrill_rating: 10, open: false)
+@ride_3 = @amusement_park.rides.create!(name: "Gummi Coaster", thrill_rating: 8, open: true)
+@ride_4 = @amusement_park.rides.create!(name: "House of Heartless", thrill_rating: 6, open: false)
+@ride_5 = @amusement_park.rides.create!(name: "Blackpearl", thrill_rating: 7, open: true)
+@sam.rides << @ride_1
+@sam.rides << @ride_2
+@abbas.rides << @ride_3

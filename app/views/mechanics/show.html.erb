@@ -4,3 +4,10 @@
 <% @rides.each do |ride| %>
 <%= ride.name %>
 <% end %>
+
+<h3> Add a ride to workload: </h3>
+<%= form_with model: @mechanic, local: true do |form| %>
+  <%= form.label :ride_id %>
+  <%= form.number_field :ride_id %>
+  <%= form.submit "Submit" %>
+<% end%>
