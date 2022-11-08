@@ -41,4 +41,31 @@ RSpec.describe "Mechanic Show Page" do
         expect(page).to have_no_content(@jaws.name)
       end
     end
+
+  it "has a form to add a ride to the specified mechanics work load" do
+    visit "/mechanics/#{@mechanic_1.id}"
+
+    within("#add_ride") do
+      expect(page).to have_field("ride_id")
+      expect(page).to have_button("Add Ride")
+    end
+  end
+
+  it "when the field is filled in with a rides id, and the submit button is clicked, the used
+    is taken back to the mechanic's show page and the new ride is on the mechanics who page" do
+      visit "/mechanics/#{@mechanic_1.id}"
+
+      within("#mechanic-rides") do
+        expect(page).to have_no_content(@jaws.name)
+      end 
+
+      fill_in :ride_id, with: @jaws.id
+      click_button "Add Ride"
+
+      expect(current_path).to eq("/mechanics/#{@mechanic_1.id}")
+      
+      within("#mechanic-rides") do
+        expect(page).to have_content(@jaws.name)
+      end 
+  end
 end
