@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'mechanics' do
+RSpec.describe 'amusement parks' do
   let!(:park1) { AmusementPark.create!(name: 'Bat World', admission_cost: 100) }
   let!(:park2) { AmusementPark.create!(name: 'Krytpon', admission_cost: 10000) }
 
@@ -23,45 +23,23 @@ RSpec.describe 'mechanics' do
   let!(:mechanic_ride4) { MechanicRide.create!(mechanic_id: mechanic3.id, ride_id: ride7.id) }
   let!(:mechanic_ride5) { MechanicRide.create!(mechanic_id: mechanic4.id, ride_id: ride5.id) }
 
-  describe 'mechanics show page' do
-    it 'has name, YOE, and names of all rides they are working on' do
-      visit "/mechanics/#{mechanic1.id}"
-      within '#mechanic_info' do
-        expect(page).to have_content(mechanic1.name)
-        expect(page).to have_content(mechanic1.experience)
-      end
-
-      within '#rides' do
-        expect(page).to have_content(ride1.name)
-        expect(page).to have_content(ride2.name)
-        expect(page).to_not have_content(ride3.name)
+  describe 'amusement parks show page' do
+    it 'has name and price of admissions for that amusement park' do
+      visit "/amusement_parks/#{park1.id}"
+      within '#park_info' do
+        expect(page).to have_content(park1.name)
+        expect(page).to have_content(park1.admission_cost)
       end
     end
 
-    it 'has a form to fill in with field of existing ride that can fill in ID and add ride to mechanic' do
-      visit "/mechanics/#{mechanic1.id}"
+    it 'has names of all unique mechanics working on that parks rides' do
+      visit "/amusement_parks/#{park1.id}"
 
-      within '#rides' do
-        expect(page).to have_content(ride1.name)
-        expect(page).to have_content(ride2.name)
-        expect(page).to_not have_content(ride3.name)
-      end
-
-      within '#new_ride' do
-        expect(page).to have_selector(:css, 'form')
-        expect(find('form')).to have_content('Ride id:')
-        expect(page).to have_button('Add New Ride')
-
-        fill_in('ride_id', with: ride3.id)
-        click_button('Add New Ride')
-      end
-
-      expect(current_path).to eq("/mechanics/#{mechanic1.id}")
-
-      within '#rides' do
-        expect(page).to have_content(ride1.name)
-        expect(page).to have_content(ride2.name)
-        expect(page).to have_content(ride3.name)
+      within '#mechanics' do
+        expect(page).to have_content(mechanic1.name)
+        expect(page).to have_content(mechanic2.name)
+        expect(page).to have_content(mechanic4.name)
+        expect(page).to_not have_content(mechanic3.name)
       end
     end
   end
