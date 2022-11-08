@@ -42,4 +42,22 @@ RSpec.describe 'mechanic show page' do
     expect(page).to_not have_content(@ride_6.name)
     expect(page).to_not have_content(@ride_7.name)
   end
+
+  it 'shows a field to add a ride to a mechanic by id' do
+    visit "/mechanics/#{@mechanic_1.id}"
+
+    expect(page).to have_field(:ride_id)
+    fill_in :ride_id, with: @ride_5.id
+    click_on "Submit"
+
+    expect(current_path).to eq("/mechanics/#{@mechanic_1.id}")
+   
+    within("#mechanic_rides") do
+      expect(page).to have_content(@ride_1.name)
+      expect(page).to have_content(@ride_2.name)
+      expect(page).to have_content(@ride_3.name)
+      expect(page).to have_content(@ride_4.name)
+      expect(page).to have_content(@ride_5.name)
+    end
+  end
 end
