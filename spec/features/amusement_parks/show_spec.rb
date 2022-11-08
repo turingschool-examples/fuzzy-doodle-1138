@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'the mechanics show page' do
+RSpec.describe 'the amusement parks show page' do
   before :each do
     @six = AmusementPark.create!(name: 'Six Flags', admission_cost: 7500)
     @california = AmusementPark.create!(name: 'California Adventure', admission_cost: 12000)
@@ -18,41 +18,12 @@ RSpec.describe 'the mechanics show page' do
     @ride_mechanic3 = RideMechanic.create!(ride_id: @viper.id, mechanic_id: @jimmy.id)
   end
 
-  it 'displays the name/years experiences/rides working on for a mechanic' do
-    visit "/mechanics/#{@omar.id}"
+  it 'displays the name and price of admissions for that park' do
+    visit "/amusement_parks/#{@six.id}"
 
-    expect(page).to have_content("Name: #{@omar.name}")
-    expect(page).to have_content("Years Experience: #{@omar.years_experience}")
-
-    within "#rides_maintained" do
-      expect(page).to have_content(@goliath.name)
-      expect(page).to have_content(@superman.name)
-      expect(page).to_not have_content(@viper.name)
+    within "#amusement_park_info" do
+      expect(page).to have_content("Park Name: #{@six.name}")
+      expect(page).to have_content("Price of Admission: $75.00")
     end
-  end
-
-  it 'has a form to add a ride to their workload' do
-    visit "/mechanics/#{@omar.id}"
-
-    within "#add_ride_to_workload" do
-      expect(page).to have_content('Add a ride to workload:')
-      expect(page).to have_field('Ride Id:')
-      expect(page).to have_button('Add Ride')
-    end
-  end
-
-  it 'can add a ride to the mechanic workload using the ride ID' do
-    visit "/mechanics/#{@omar.id}"
-
-    fill_in('Ride Id:', with: "#{@viper.id}")
-    click_on('Add Ride')
-
-    expect(current_path).to eq("/mechanics/#{@omar.id}")
-    within "#rides_maintained" do
-      expect(page).to have_content(@goliath.name)
-      expect(page).to have_content(@superman.name)
-      expect(page).to have_content(@viper.name)
-    end
-
   end
 end
