@@ -19,22 +19,26 @@ RSpec.describe 'Amusement Park Show Page' do
     RideMechanic.create!(mechanic_id: @mechanic1.id, ride_id: @jaws.id)
     RideMechanic.create!(mechanic_id: @mechanic2.id, ride_id: @ferris.id)
     RideMechanic.create!(mechanic_id: @mechanic2.id, ride_id: @scrambler.id)
+    RideMechanic.create!(mechanic_id: @mechanic3.id, ride_id: @jaws.id)
 
-    visit amusement_park_path(@sixflags)
+    visit amusement_park_path(@six_flags)
   end 
 
   describe 'Amusement park info' do 
     it 'I see the name and price of admissions for the amusement park' do 
 
-      expect(page).to have_content(@sixflags.name)
-      expect(page).to have_content(@sixflags.admission_cost)
+      expect(page).to have_content(@six_flags.name)
+      expect(page).to have_content(@six_flags.admission_cost)
       expect(page).to_not have_content(@universal.name)
       expect(page).to_not have_content(@universal.admission_cost)
 
     end
 
-    xit 'I see the names of all mechanics that are working on that parks ride and I see that the list of mechanics is unique' do 
-      
+    it 'I see the names of all mechanics that are working on that parks ride and I see that the list of mechanics is unique' do 
+
+      expect(page).to have_content(@mechanic1.name)
+      expect(page).to have_content(@mechanic2.name)
+      expect(page).to_not have_content(@mechanic3.name)
     end
   end
 end

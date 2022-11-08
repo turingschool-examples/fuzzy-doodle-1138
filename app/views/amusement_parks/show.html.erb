@@ -1,0 +1,10 @@
+<h1><center> <%= @amusementpark.name%> Information </center></h1>
+<br>
+<hr>
+
+<center><strong> Admission Price: </strong> <%= @amusementpark.admission_cost %></center> 
+<br>
+<br>
+<center><strong>Maintenence Workers:</strong> <% @amusementpark.unique_mechanics.each do |mechanic|%>
+                                                <p><%= mechanic.name %> </p>
+                                              <% end %>
