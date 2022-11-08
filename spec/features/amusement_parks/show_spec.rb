@@ -42,5 +42,55 @@ RSpec.describe 'amusement park show page' do
         expect(page).to_not have_content(@mechanic_3.name)
       end
     end
+
+    xit 'shows all rides with average experience of mechanics working on ride listed' do
+      visit "/amusement_parks/#{@park_1.id}"
+
+      within("#ride-#{@ride_1.id}") do
+        expect(page).to have_content(@ride_1.name)
+        expect(page).to have_content("Average Experience: 14.5")
+      end
+
+      within("#ride-#{@ride_2.id}") do
+        expect(page).to have_content(@ride_2.name)
+        expect(page).to have_content("Average Experience: 17")
+      end
+
+      within("#ride-#{@ride_3.id}") do
+        expect(page).to have_content(@ride_3.name)
+        expect(page).to have_content("Average Experience: 17")
+      end
+
+      within("#ride-#{@ride_4.id}") do
+        expect(page).to have_content(@ride_4.name)
+        expect(page).to have_content("Average Experience: 17")
+      end
+
+      within("#ride-#{@ride_5.id}") do
+        expect(page).to have_content(@ride_5.name)
+        expect(page).to have_content("Average Experience: 12")
+      end
+
+      within("#ride-#{@ride_6.id}") do
+        expect(page).to have_content(@ride_6.name)
+        expect(page).to have_content("Average Experience: 12")
+      end
+
+      within("#ride-#{@ride_7.id}") do
+        expect(page).to have_content(@ride_7.name)
+        expect(page).to have_content("Average Experience: 12")
+      end
+
+      expect(page).to_not have_content(@ride_8.name)
+    end
+
+    xit 'shows rides ordered by average experience of mechanics' do
+      expect(@ride_2.name).to appear_before(@ride_3.name)
+      expect(@ride_3.name).to appear_before(@ride_4.name)
+      expect(@ride_4.name).to appear_before(@ride_1.name)
+      expect(@ride_1.name).to appear_before(@ride_5.name)
+      expect(@ride_5.name).to appear_before(@ride_6.name)
+      expect(@ride_6.name).to appear_before(@ride_7.name)
+    end
   end
 end
