@@ -6,3 +6,10 @@
     
 
 <% end %>
+
+<h2>Add a Ride to workload</h2>
+<%= form_with url: "/mechanics/#{@mechanic.id}", local: true do |f| %>
+  <%= f.label "Ride Id" %>
+  <%= f.text_field :ride %>
+  <%= f.submit "Submit" %>
+<% end %>
