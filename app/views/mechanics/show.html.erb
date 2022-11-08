@@ -1,0 +1,8 @@
+<h1>Mechanic Show page </h1>
+
+<p>-Name:<%=@mechanic.name%></p>
+<p>Years experience:<%=@mechanic.years_experience%></p>
+
+  <% @mechanic.rides.map do|ride| %>
+    <p>Names of rides being worked on:<%= ride.name%></p>
+  <% end %>
