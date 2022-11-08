@@ -1,3 +1,17 @@
-<h1><center> <%= @mechanic.name %> </center></h1><br>
+<h1><center>Worker: <%= @mechanic.name %> </center></h1><br>
 <hr>
 
+<center><ul><strong>Years of Experience:</strong> <%= @mechanic.years_experience %></ul></center>
+<center><ul><strong>Rides Working On:</strong> <% @mechanic.rides.each do |ride| %>
+                                               <p> <%= ride.name %></p>
+                                               <% end %> 
+                                               </ul></center>
+
+
+<center><strong>Add Ride to Workload: </strong><center>
+<center><%= form_with url: "/mechanics/#{@mechanic.id}/ride_mechanics", method: :post, local: true do |f| %>
+<%= f.label :ride_id, "Ride id" %>
+<%= f.text_field :ride_id %>
+<%= f.submit "Submit" %>
+<% end %>
+</center>

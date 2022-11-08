@@ -26,7 +26,7 @@ RSpec.describe 'Mechanic Show page' do
   describe 'Display mechanic invidiual info ' do 
     it 'As a user, when I visit a mechanic show page,I see their name, years exp, and the name of all the rides they are working on' do 
       visit mechanic_path(@mechanic1)
-
+      
       expect(page).to have_content(@mechanic1.name)
       expect(page).to have_content(@mechanic1.years_experience)
       expect(page).to have_content(@hurler.name)
@@ -37,5 +37,30 @@ RSpec.describe 'Mechanic Show page' do
     end
   end
 
+  describe 'USER  STORY 2 Add a Ride to a mechanic form' do 
+    it 'On show page, I see a form to add a ride to their workload, I fill in the field with an id of an exisiting
+          ride and click Submit' do 
+      visit mechanic_path(@mechanic1)
 
+      fill_in "Ride id", with:(@ferris.id)
+
+      click_button("Submit")
+      
+    end
+
+    it "After filling in form and click submit I am taken back to the mechanics show page, and I see the name of that newly added ride" do 
+   
+      visit mechanic_path(@mechanic1)
+
+      fill_in "Ride id", with:(@ferris.id)
+
+      click_button("Submit")
+
+      expect(current_path).to eq(mechanic_path(@mechanic1))
+
+      expect(page).to have_content(@ferris.name)
+    end
+  end
+
+  describe 'User Story 3 '
 end
