@@ -1,0 +1,13 @@
+<h2>Mechanic Information</h2>
+
+<li>Mechanic Name: <%= @mechanic.name %></li>
+<li>Years of Experience: <%= @mechanic.years_experience %></li>
+
+<p><b>Rides that <%= @mechanic.name %> is currently working on:</b></p>
+<div id="mechanic-rides">
+<% @rides.each do |ride| %>
+  <% if @mechanic.rides.include?(ride) %>
+  <li><%= ride.name %></li>
+  <% end %>
+<% end %>
+</div>
