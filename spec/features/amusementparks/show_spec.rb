@@ -1,9 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe AmusementPark, type: :model do
-  describe 'relationships' do
-    it { should have_many(:rides) }
-  end
+RSpec.describe '/amusement_parks/show' do
   before :each do
     @carowinds = AmusementPark.create!(name: 'Carowinds', admission_cost: 5)
 
@@ -25,11 +22,8 @@ RSpec.describe AmusementPark, type: :model do
     @mr6 = MechanicRide.create!(ride_id: @ride3.id, mechanic_id: @mechanic3.id)
 
   end
-  describe 'unique_mechanics' do
-    it 'lists unique_mechanics' do
-      @carowinds.unique_mechanics
-    end
-    
+  it 'lists name and admissions for park, lists all unique mechanics' do
+    visit "/amusementparks/#{@carowinds.id}"
+    save_and_open_page
   end
-
 end
