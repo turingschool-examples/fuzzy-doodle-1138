@@ -1,5 +1,4 @@
 # Railer Coaster
-
 This repository requires and has been tested on Ruby v2.7.4 and is based on Rails 5.2.8.
 
 RSpec and Shoulda-Matchers have been installed and set up.
