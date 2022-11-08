@@ -20,15 +20,12 @@ RSpec.describe 'the amusement park show page' do
   end
   it "displays the park's name and price of admissions" do
     visit "/amusement_parks/#{@park_1.id}"
-    # save_and_open_page
     expect(page).to have_content("Amusement Park: #{@park_1.name}")
     expect(page).to have_content("Admission Cost: #{@park_1.admission_cost}")
   end
   it "a unique list of the names of all mechanics that are working on that park's rides" do
     visit "/amusement_parks/#{@park_1.id}"
-    # save_and_open_page
-    expect(page).to have_content("Amusement Park: #{@park_1.name}")
-    expect(page).to have_content("Admission Cost: #{@park_1.admission_cost}")
+
     #is there a better way to test that the list of mechanics is unique?
     expect(page).to have_content("Mechanics Working:\n#{@mechanic_1.name}\n#{@mechanic_2.name}\n#{@mechanic_3.name}")
     # expect(page).to have_content(@mechanic_1.name)

@@ -4,7 +4,7 @@
 <% @mechanic.rides.each do |ride| %>
   <p><%= ride.name %></p>
 <% end %>
-<%= form_with url: "/mechanics/#{@mechanic.id}", method: :patch, local: true do |f| %>
+<%= form_with url: "/mechanics/#{@mechanic.id}/rides", method: :post, local: true do |f| %>
   <%= f.label :ride_id, "Ride ID:" %>
   <%= f.number_field :ride_id %>
   <%= f.submit "Submit" %>
