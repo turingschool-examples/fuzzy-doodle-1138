@@ -34,9 +34,9 @@ RSpec.describe 'the mechanics show page' do
   it 'has a form to add a ride to their workload' do
     visit "/mechanics/#{@omar.id}"
 
-    within "add_ride_to_workload" do
+    within "#add_ride_to_workload" do
       expect(page).to have_content('Add a ride to workload:')
-      expect(page).to have_field('Ride Id:')
+      expect(page).to have_content('Ride Id:')
       expect(page).to have_button('Add Ride')
     end
   end
