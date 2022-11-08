@@ -13,3 +13,13 @@
     <% end %>
   </ul>
 </div>
+
+<h3>Rides for You to Enjoy:</h3>
+<div id="ride_list">
+  <ul>
+    <% @amusement_park.rides_sorted_by_exp.each do |ride|%>
+    <div id="ride_info_<%= ride.id %>">
+      <li><%= ride.name %> - Average Experience of Mechanics: <%= ride.average_exp %> years
+    <% end %>
+    </div>
+</div>

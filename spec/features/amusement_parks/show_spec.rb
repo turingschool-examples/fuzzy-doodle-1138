@@ -16,7 +16,7 @@ RSpec.describe 'the amusement parks show page' do
     @ride_mechanic1 = RideMechanic.create!(ride_id: @goliath.id, mechanic_id: @omar.id)
     @ride_mechanic2 = RideMechanic.create!(ride_id: @superman.id, mechanic_id: @omar.id)
     @ride_mechanic3 = RideMechanic.create!(ride_id: @viper.id, mechanic_id: @jimmy.id)
-    @ride_mechanic3 = RideMechanic.create!(ride_id: @goliath.id, mechanic_id: @jimmy.id)
+    @ride_mechanic4 = RideMechanic.create!(ride_id: @goliath.id, mechanic_id: @jimmy.id)
   end
 
   it 'displays the name and price of admissions for that park' do
@@ -34,6 +34,39 @@ RSpec.describe 'the amusement parks show page' do
     within "#mechanics_lists" do
       expect(page).to have_content(@omar.name).once
       expect(page).to have_content(@jimmy.name).once
+    end
+  end
+
+  it 'list all the park rides' do
+    visit "/amusement_parks/#{@six.id}"
+
+    expect(page).to have_content(@goliath.name)
+    expect(page).to have_content(@superman.name)
+    expect(page).to have_content(@viper.name)
+  end
+
+  it 'displays the average experience of ride mechanics next to each ride' do
+    visit "/amusement_parks/#{@six.id}"
+
+    within "#ride_info_#{@goliath.id}" do
+      expect(page).to have_content("Average Experience of Mechanics: 9.0 years")
+    end
+
+    within "#ride_info_#{@superman.id}" do
+      expect(page).to have_content("Average Experience of Mechanics: 11.0 years")
+    end
+
+    within "#ride_info_#{@viper.id}" do
+      expect(page).to have_content("Average Experience of Mechanics: 7.0 years")
+    end
+  end
+
+  it 'orders rides by average experience of ride mechanics' do
+    visit "/amusement_parks/#{@six.id}"
+
+    within "#ride_list" do
+      expect('Superman').to appear_before('Goliath')
+      expect('Goliath').to appear_before('Viper')
     end
   end
 end
