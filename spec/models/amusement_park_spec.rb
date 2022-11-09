@@ -27,6 +27,7 @@ RSpec.describe AmusementPark, type: :model do
 
     it "can show unique mechanics" do
       expect(@six_flags.show_unique).to eq([@mechanic_1, @mechanic_2])
+      expect(@six_flags.show_unique).to_not eq([@mechanic_1, @mechanic_1, @mechanic_2])
     end
   end
 end
