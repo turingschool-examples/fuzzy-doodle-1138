@@ -28,12 +28,19 @@ RSpec.describe 'amusement park show page (/amusement_parks/:id)', type: :feature
 
       it '- shows the name and price of admissions for that amusement park' do
         visit amusement_park_path(@white_water)
-        
+
+        expect(page).to have_content("Name: White Water")
+        expect(page).to have_content("Admission Cost: $40")
       end
 
       it '- shows the names of all mechanics that are working on that parks rides.
       the list of mechanics is unique to the park' do
+        visit amusement_park_path(@white_water)
 
+        within "#park-mechanics" do
+          expect(page).to have_content(@rupert.name)
+          expect(page).to have_content(@kara.name)
+        end
       end
     end
   end
