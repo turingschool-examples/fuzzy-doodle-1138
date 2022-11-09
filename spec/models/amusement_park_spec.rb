@@ -27,7 +27,8 @@ RSpec.describe AmusementPark, type: :model do
     end
     describe '.park_mechanics' do
       it 'should return all unique mechanics working on rides at the park' do
-        expect(@six_flags.park_mechanics).to eq([@kara, @ted])
+        expect(@six_flags.park_mechanics.count).to eq(2)
+        expect(@six_flags.park_mechanics.pluck('mechanics.name')).to eq(['Kara Smith', 'Ted Redd'])
       end
     end
   end

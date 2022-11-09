@@ -13,11 +13,13 @@ RSpec.feature "Amusement Park Show Page", type: :feature do
 
       @kara = Mechanic.create!(name: 'Kara Smith', years_experience: 11)
       @ted = Mechanic.create!(name: 'Ted Redd', years_experience: 6)
+      @maria = Mechanic.create!(name: 'Maria Black', years_experience: 8)
 
       @mechanic_ride_1 = MechanicRide.create!(mechanic_id: @kara.id, ride_id: @hurler.id)
       @mechanic_ride_2 = MechanicRide.create!(mechanic_id: @kara.id, ride_id: @scrambler.id)
       @mechanic_ride_3 = MechanicRide.create!(mechanic_id: @kara.id, ride_id: @jaws.id)
       @mechanic_ride_4 = MechanicRide.create!(mechanic_id: @ted.id, ride_id: @ferris.id)
+      @mechanic_ride_5 = MechanicRide.create!(mechanic_id: @maria.id, ride_id: @jaws.id)
     end
     it 'displays the name and admission price of the amusement park' do
       visit amusement_park_path(@six_flags)
