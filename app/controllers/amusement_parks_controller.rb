@@ -1,5 +1,6 @@
-class MechanicsController < ApplicationController
+class AmusementParksController < ApplicationController
   def show
-    @mechanic = Mechanic.find(params[:id])
+    @amusement_park = AmusementPark.find(params[:id])
+    @park_mechanics = @amusement_park.park_mechanics
   end
 end

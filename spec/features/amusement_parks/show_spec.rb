@@ -25,15 +25,14 @@ RSpec.feature "Amusement Park Show Page", type: :feature do
       visit amusement_park_path(@six_flags)
 
       expect(page).to have_content('Six Flags')
-      expect(page).to have_content('Admission cost: 75')
+      expect(page).to have_content('Admission cost: $75')
     end
     it 'has the names of all mechanics working on the rides of that park with no repeats' do
       visit amusement_park_path(@six_flags)
 
   
-      expect(page).to have_content('Kara Smith')
-      expect(page).to have_content('Ted Redd')
-      expect(@park_mechanics.count).to eq(2)
+      expect(page).to have_content('Kara Smith', count: 1)
+      expect(page).to have_content('Ted Redd'), count: 1
     end
   end
 end
