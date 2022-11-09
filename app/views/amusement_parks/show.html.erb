@@ -2,5 +2,10 @@
 <h3> Admission Price: <%= @amusement_park.admission_cost %></h3>
 <h3> Mechanics:</h3>
 <% @mechanics.each do |mechanic| %>
-<%= mechanic.name %>
+<p> <%= mechanic.name %> </p>
+<% end %>
+
+<h3> Rides:</h3>
+<% @rides.each do |ride| %>
+<p> Name: <%= ride.name %>, Average Work Experience of Mehcanics: <%= ride.average %></p>
 <% end %>

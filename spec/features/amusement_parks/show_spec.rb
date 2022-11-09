@@ -28,4 +28,23 @@ RSpec.describe "the amusement park's show page" do
     expect(page).to have_content("Sam", count: 1)
     expect(page).to have_content("Abbas")
   end
+
+  it "lists the rides in the amusement park along with their respective mechanics' average work experience" do
+    frodo = Mechanic.create!(name: "Sam", years_experience: 9)
+    hamada = Mechanic.create!(name: "Sam", years_experience: 5)
+    
+    frodo.rides << @ride_1
+    hamada.rides << @ride_3
+    @sam.rides << @ride_5
+    @abbas.rides << @ride_5
+    
+    visit amusement_park_path(@amusement_park)
+
+    expect(page).to have_content("Rides:")
+    expect(page).to have_content("Name: Gummi Coaster, Average Work Experience of Mehcanics: 7.0")
+    expect(page).to have_content("Name: Merry Go Round, Average Work Experience of Mehcanics: 11.0")
+
+    expect("Name: Gummi Coaster, Average Work Experience of Mehcanics: 7.0").to appear_before("Name: Barf-a-lot, Average Work Experience of Mehcanics: 10.0")
+    expect("Name: Barf-a-lot, Average Work Experience of Mehcanics: 10.0").to appear_before("Name: Merry Go Round, Average Work Experience of Mehcanics: 11.0")
+  end
 end
