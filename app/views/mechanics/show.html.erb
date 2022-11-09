@@ -1,0 +1,17 @@
+<%#* No visual styling is required or expected %>
+<%= @mechanic.name %>
+<%= @mechanic.years_experience %>
+<% @mechanic.rides.each do |ride| %>
+  <%= ride.name %>
+<% end %>
+
+<%# * No visual styling is required or expected %>
+<%= form_with(url: "/mechanics/#{@mechanic.id}", method: 'patch', local: true) do |form| %>
+  <div>
+    <%= form.label :ride_id %>
+    <%= form.number_field :ride_id %>
+  </div>
+  <div>
+    <%= form.submit 'add job' %>
+  </div>
+<% end %>
