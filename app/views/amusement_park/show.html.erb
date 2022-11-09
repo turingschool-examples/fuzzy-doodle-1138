@@ -1,7 +1,13 @@
 <h1>AmusementPark Show page</h1>
 
-<% @amusement_park.rides.each do|ride| %>
-
-<p><%= ride.name %></p>
-<p>Average years mechanic has:<%=@mechanic.average_experience %></p>
-<% end %>
+<div id="dos">
+    <p>Name:<%=@amusement_park.name %> </p>
+    <p>Admissions Cost:<%=@amusement_park.admission_cost %> </p>
+  <%@amusement_park.mech_names.each do|mech| %>
+    <p>Employees:<%=mech.name%></p>
+  <% end %>
+</div>
+  <% @amusement_park.rides.each do|ride| %>
+    <p><%= ride.name %></p>
+    <p>Average years mechanic has:<%=@mechanic.average_experience %></p>
+  <% end %>
