@@ -16,3 +16,17 @@ Ride.destroy_all
 @ferris = @six_flags.rides.create!(name: 'Ferris Wheel', thrill_rating: 7, open: false)
 
 @jaws = @universal.rides.create!(name: 'Jaws', thrill_rating: 5, open: true)
+
+
+@kara = Mechanic.create!(name: "Kara Smith", years_experience: 11)
+@larry = Mechanic.create!(name: "Larry Quinn", years_experience: 3)
+
+@frog = @six_flags.rides.create!(name: "The Frog Hopper", thrill_rating: 7, open: false)
+@farenheit = @six_flags.rides.create!(name: "Farenheit", thrill_rating: 9, open: true)
+@kiss = @six_flags.rides.create!(name: "The Kiss Raise", thrill_rating: 4, open: true)
+
+@kara.rides << @frog
+@kara.rides << @farenheit
+@kara.rides << @kiss
+@larry.rides << @farenheit
+@larry.rides << @kiss 

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :rides, only: [:index]
   end
 
-  patch '/mechanics/:id', to: 'mechanics#update'
+  post '/mechanics/:id', to: 'mechanics#new'
 
   resources :amusement_parks, only: [:show]
 
